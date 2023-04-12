@@ -35,6 +35,7 @@ class _ResultPageState extends State<ResultPage> {
                         height: MediaQuery.of(context).size.height / 1.3,
                         child: TextFormField(
                             maxLines: 1000,
+                            maxLength: 5000,
                             keyboardType: TextInputType.multiline,
                             controller: textController,
                             validator: (val) {
@@ -50,18 +51,14 @@ class _ResultPageState extends State<ResultPage> {
                                   borderRadius: BorderRadius.circular(8.0)),
                             ))),
                     Positioned(
-                      bottom: 15,
+                      bottom: 25,
                       right: 6,
                       child: InkWell(
                           onTap: () {
                             Clipboard.setData(
                                 ClipboardData(text: textController.text));
-                            final snackBar = SnackBar(
-                              content: const Text('Copied to Clipboard'),
-                              action: SnackBarAction(
-                                label: 'Undo',
-                                onPressed: () {},
-                              ),
+                            const snackBar = SnackBar(
+                              content: Text('Copied to Clipboard'),
                             );
                             ScaffoldMessenger.of(context)
                                 .showSnackBar(snackBar);
